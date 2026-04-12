@@ -428,7 +428,7 @@
 
     .apps-grid {
       display: grid;
-      grid-template-columns: 1fr 0.8fr;
+      grid-template-columns: 1fr;
       gap: 22px;
     }
 
@@ -579,6 +579,135 @@
       font-size: 0.88rem;
     }
 
+    /* ── Section subtitle ── */
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: -24px;
+      margin-bottom: 42px;
+    }
+
+    /* ── Projects grid ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-card--wide {
+      grid-column: 1 / -1;
+    }
+
+    .project-card {
+      border-radius: var(--radius);
+      background: var(--panel);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: inset 0 0 22px rgba(0, 245, 255, 0.03);
+      padding: 26px 24px 22px;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+    }
+
+    .project-card:hover {
+      border-color: rgba(191, 95, 255, 0.45);
+      box-shadow: 0 0 30px rgba(0, 245, 255, 0.18), 0 0 34px rgba(191, 95, 255, 0.16);
+    }
+
+    /* top-edge colour accent */
+    .proj-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--ac, var(--cyan));
+      box-shadow: 0 0 12px var(--ac, var(--cyan));
+      opacity: 0.8;
+    }
+
+    .proj-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .proj-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      background: var(--ic, rgba(0, 245, 255, 0.18));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 14px rgba(0, 245, 255, 0.12);
+      flex: 0 0 auto;
+    }
+
+    .proj-name {
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.08rem;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+
+    .proj-type {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .proj-desc {
+      color: #afc2cc;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      line-height: 1.65;
+    }
+
+    .proj-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 10px;
+      padding: 10px 16px;
+      border: 1px solid rgba(0, 245, 255, 0.42);
+      color: #e8fcff;
+      background: rgba(0, 245, 255, 0.11);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 0 14px rgba(0, 245, 255, 0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 6px;
+    }
+
+    .proj-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.32), 0 0 22px rgba(191, 95, 255, 0.22);
+    }
+
+    .proj-btn--violet {
+      border-color: rgba(191, 95, 255, 0.45);
+      background: rgba(191, 95, 255, 0.12);
+      box-shadow: 0 0 14px rgba(191, 95, 255, 0.2);
+    }
+
+    @media (max-width: 860px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-card--wide {
+        grid-column: 1;
+      }
+    }
+
     footer {
       padding: 28px 0 36px;
       border-top: 1px solid rgba(0, 245, 255, 0.3);
@@ -725,6 +854,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">Home</a></li>
       <li><a href="#apps">Apps</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
 
@@ -756,8 +886,8 @@
       <div class="container">
         <div class="stats-row">
           <div class="stat-item">
-            <span class="value counter" data-target="1" data-prefix="" data-suffix="">0</span>
-            <span class="label">App Live</span>
+            <span class="value counter" data-target="5" data-prefix="" data-suffix="+">0</span>
+            <span class="label">Projects Live</span>
           </div>
           <div class="stat-item">
             <span class="value counter" data-target="100" data-prefix="" data-suffix="+">0</span>
@@ -796,13 +926,126 @@
             <a href="/apks/assembly-hub-v2.apk" download class="download-btn">Download APK</a>
           </article>
 
-          <aside class="ghost-card reveal">
-            <div>
-              <div class="ghost-lock">🔒</div>
-              <h4>More apps coming soon...</h4>
-              <p>New experiments are in the lab. Stay tuned for upcoming student-built releases.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS SECTION ========== -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title reveal">Our Projects</h2>
+        <p class="section-sub reveal">Web tools, AI experiments, and games — all student-built at TechSphere.</p>
+
+        <div class="projects-grid">
+
+          <!-- Git Tracker -->
+          <article class="project-card reveal tilt-card" id="proj-git">
+            <div class="proj-accent" style="--ac: var(--cyan);"></div>
+            <div class="proj-head">
+              <div class="proj-icon" style="--ic: rgba(0,245,255,0.25);">🔍</div>
+              <div>
+                <h3 class="proj-name">Git Tracker</h3>
+                <span class="proj-type">AI&nbsp;&bull;&nbsp;DevTool</span>
+              </div>
             </div>
-          </aside>
+            <p class="proj-desc">AI tracks &amp; analyzes any GitHub repository and generates ready-to-post LinkedIn &amp; X/Twitter content in seconds.</p>
+            <div class="tags">
+              <span class="tag">AI</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">LinkedIn</span>
+            </div>
+            <a href="https://github.com/Ankur3509/git-tracker" target="_blank" rel="noopener" class="proj-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </article>
+
+          <!-- Mail IT AI -->
+          <article class="project-card reveal tilt-card" id="proj-mail">
+            <div class="proj-accent" style="--ac: var(--violet);"></div>
+            <div class="proj-head">
+              <div class="proj-icon" style="--ic: rgba(191,95,255,0.25);">✉️</div>
+              <div>
+                <h3 class="proj-name">Mail IT AI</h3>
+                <span class="proj-type">AI&nbsp;&bull;&nbsp;Email</span>
+              </div>
+            </div>
+            <p class="proj-desc">AI-powered email drafting and sending — just describe what you want to say and let the AI craft the perfect message.</p>
+            <div class="tags">
+              <span class="tag">AI</span>
+              <span class="tag">Email</span>
+              <span class="tag">Productivity</span>
+            </div>
+            <a href="https://github.com/Ankur3509/Mail-IT-AI" target="_blank" rel="noopener" class="proj-btn proj-btn--violet">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </article>
+
+          <!-- TechSphere Games -->
+          <article class="project-card reveal tilt-card" id="proj-games">
+            <div class="proj-accent" style="--ac: #ff6f3c;"></div>
+            <div class="proj-head">
+              <div class="proj-icon" style="--ic: rgba(255,111,60,0.22);">🎮</div>
+              <div>
+                <h3 class="proj-name">TechSphere Games</h3>
+                <span class="proj-type">Games&nbsp;&bull;&nbsp;Web</span>
+              </div>
+            </div>
+            <p class="proj-desc">A collection of browser-based games crafted by TechSphere members — play directly in your browser, no install needed.</p>
+            <div class="tags">
+              <span class="tag" style="border-color:rgba(255,111,60,0.5);background:rgba(255,111,60,0.1);">Games</span>
+              <span class="tag" style="border-color:rgba(255,111,60,0.5);background:rgba(255,111,60,0.1);">Web</span>
+              <span class="tag" style="border-color:rgba(255,111,60,0.5);background:rgba(255,111,60,0.1);">Play Now</span>
+            </div>
+            <a href="https://app-9ely67r30075.appmedo.com/" target="_blank" rel="noopener" class="proj-btn" style="border-color:rgba(255,111,60,0.5);background:rgba(255,111,60,0.13);box-shadow:0 0 16px rgba(255,111,60,0.22);">
+              🕹️&nbsp; Play Now
+            </a>
+          </article>
+
+          <!-- Diets AI -->
+          <article class="project-card reveal tilt-card" id="proj-diets">
+            <div class="proj-accent" style="--ac: #3cffb4;"></div>
+            <div class="proj-head">
+              <div class="proj-icon" style="--ic: rgba(60,255,180,0.2);">🥗</div>
+              <div>
+                <h3 class="proj-name">Diets AI</h3>
+                <span class="proj-type">AI&nbsp;&bull;&nbsp;Health</span>
+              </div>
+            </div>
+            <p class="proj-desc">Science-based personalized diet planner — deterministic nutrition plans tailored to your health profile, goals &amp; medical conditions.</p>
+            <div class="tags">
+              <span class="tag" style="border-color:rgba(60,255,180,0.5);background:rgba(60,255,180,0.1);">Nutrition</span>
+              <span class="tag" style="border-color:rgba(60,255,180,0.5);background:rgba(60,255,180,0.1);">Health</span>
+              <span class="tag" style="border-color:rgba(60,255,180,0.5);background:rgba(60,255,180,0.1);">Science</span>
+            </div>
+            <a href="https://dietsai.netlify.app/" target="_blank" rel="noopener" class="proj-btn" style="border-color:rgba(60,255,180,0.5);background:rgba(60,255,180,0.12);box-shadow:0 0 16px rgba(60,255,180,0.22);">
+              🌿&nbsp; Launch App
+            </a>
+          </article>
+
+          <!-- Gesture Lab -->
+          <article class="project-card project-card--wide reveal tilt-card" id="proj-gesture">
+            <div class="proj-accent" style="--ac: #ffd700;"></div>
+            <div class="proj-head">
+              <div class="proj-icon" style="--ic: rgba(255,215,0,0.2);">🖐️</div>
+              <div>
+                <h3 class="proj-name">Gesture Lab</h3>
+                <span class="proj-type">ML&nbsp;&bull;&nbsp;MediaPipe&nbsp;&bull;&nbsp;WebGL</span>
+              </div>
+            </div>
+            <p class="proj-desc">Real-time hand tracking powered by MediaPipe — control shapes, geometries and interactive canvases using nothing but your hands. No controller needed.</p>
+            <div class="tags">
+              <span class="tag" style="border-color:rgba(255,215,0,0.5);background:rgba(255,215,0,0.1);">MediaPipe</span>
+              <span class="tag" style="border-color:rgba(255,215,0,0.5);background:rgba(255,215,0,0.1);">Hand Tracking</span>
+              <span class="tag" style="border-color:rgba(255,215,0,0.5);background:rgba(255,215,0,0.1);">WebGL</span>
+              <span class="tag" style="border-color:rgba(255,215,0,0.5);background:rgba(255,215,0,0.1);">Real-time</span>
+            </div>
+            <a href="https://gesturelabai.netlify.app/" target="_blank" rel="noopener" class="proj-btn" style="border-color:rgba(255,215,0,0.5);background:rgba(255,215,0,0.12);box-shadow:0 0 16px rgba(255,215,0,0.22);">
+              🤌&nbsp; Try Gesture Lab
+            </a>
+          </article>
+
         </div>
       </div>
     </section>
@@ -938,8 +1181,7 @@
       });
     });
 
-    const tiltCard = document.querySelector(".tilt-card");
-    if (tiltCard) {
+    document.querySelectorAll(".tilt-card").forEach((tiltCard) => {
       const maxTilt = 8;
 
       tiltCard.addEventListener("mousemove", (e) => {
@@ -956,7 +1198,7 @@
       tiltCard.addEventListener("mouseleave", () => {
         tiltCard.style.transform = "perspective(850px) rotateX(0deg) rotateY(0deg)";
       });
-    }
+    });
 
     const dot = document.querySelector(".cursor-dot");
     const ring = document.querySelector(".cursor-ring");
@@ -981,7 +1223,7 @@
     }
     renderCursor();
 
-    document.querySelectorAll("a, button, .app-card").forEach((el) => {
+    document.querySelectorAll("a, button, .app-card, .project-card").forEach((el) => {
       el.addEventListener("mouseenter", () => ring.classList.add("active"));
       el.addEventListener("mouseleave", () => ring.classList.remove("active"));
     });
